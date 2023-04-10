@@ -33,8 +33,12 @@ app.post("/search", (req, res) => {
   // console.log(result);
   // res.status(result.statusCode).json(result);
 });
-
-
+app.post("/delete",(req,res)=>
+{
+  ds.deleteBus(req.body.busNo).then(result=>{
+    res.status(result.statusCode).json(result);
+  })
+})
 app.listen(3000, () => {
   console.log("Port 3000 running");
 });

@@ -39,6 +39,9 @@ search=(from,to)=>{
     
     return db.Bus.findOne({from:from,to:to}).then(bus=>
         {
+            console.log("RESULT");
+            console.log(db.Bus.find().schema.plugins);
+            console.log(db.Bus.find({"busNo":100}))
             if(bus)
             {
                 var resultObj={
@@ -66,7 +69,34 @@ search=(from,to)=>{
         }
     );         
 }
+
+deleteBus=(busNo)=>{
+    console.log("Inside deleteBUs()");
+    return db.Bus.deleteOne({busNo:busNo}).then((result)=>
+    {
+        if(result.deletedCount)
+        {
+            console.log(result);
+            return {
+                status:true,
+                message:"Deleted Bus",
+                statusCode:200 
+            }
+        }
+        else
+        {
+            console.log(result);
+            return {
+                status:false,
+                message:`Bus Not Found`,
+                statusCode:404
+            };   
+        }
+    });
+
+}
 module.exports={
     addBus,
-    search
+    search,
+    deleteBus
 }
