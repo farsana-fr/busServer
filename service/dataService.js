@@ -39,18 +39,16 @@ search=(from,to)=>{
     
     return db.Bus.findOne({from:from,to:to}).then(bus=>
         {
-            console.log(bus);
-            console.log(bus.busNo);
-            var resultObj={
-                busNo:bus.busNo,
-            regNo:bus.regNo,
-            from:bus.from,
-            to:bus.to,
-            departureTime:bus.departureTime
-            };
-
             if(bus)
             {
+                var resultObj={
+                    busNo:bus.busNo,
+                regNo:bus.regNo,
+                from:bus.from,
+                to:bus.to,
+                departureTime:bus.departureTime
+                };
+    
                 return {
                     status:true,
                     message:resultObj,
@@ -61,22 +59,14 @@ search=(from,to)=>{
             {
                 return {
                     status:false,
-                    message:`Not Found`,
+                    message:`Bus Not Found`,
                     statusCode:404
                 };
             }
         }
     );         
 }
-view=()=>{
-    // for(let i of db.Bus.le)
-    console.log(db.Bus.find());
-
-    // db.Bus.find(e=>console.log(e));
-    return db.Bus;
-}
 module.exports={
     addBus,
-    search,
-    view
+    search
 }

@@ -34,12 +34,7 @@ app.post("/search", (req, res) => {
   // res.status(result.statusCode).json(result);
 });
 
-// //resolve API
-app.get("/view", (req, res) => {
-  const result=ds.view()
-  
-  res.send(result);
-});
+
 app.listen(3000, () => {
   console.log("Port 3000 running");
 });
