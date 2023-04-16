@@ -39,6 +39,47 @@ app.post("/delete",(req,res)=>
     res.status(result.statusCode).json(result);
   })
 })
+
+app.post("/book",(req,res)=>
+{
+  ds.book(req.body.email).then(result=>{
+    res.status(result.statusCode).json(result);
+  })
+})
+app.post("/bookBus",(req,res)=>
+{
+  console.log(req.body);
+  ds.bookBus(req.body.busNo,req.body.regNo,req.body.from,req.body.to,req.body.dTime,req.body.email,req.body.uName).then(result=>{
+    console.log("RES=====>",result);
+    res.status(result.statusCode).json(result);
+  })
+})
+
+app.post("/updateBus",(req,res)=>
+{
+  
+  console.log("UPDATE");
+  console.log(req.body);
+  var obj=req.body;
+
+  ds.update(req.body.busNo,obj).then(result=>{
+    res.status(result.statusCode).json(result);
+  })
+})
+
+
+app.post("/view",(req,res)=>
+{
+  
+  console.log("VIEW Ticket");
+  ds.view(req.body.email).then(result=>{
+
+    console.log("index  res ",result);
+      res.json(result)
+    // res.status(result.statusCode).json(result);
+  });
+})
+
 app.listen(3000, () => {
   console.log("Port 3000 running");
 });
