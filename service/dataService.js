@@ -1,35 +1,5 @@
 const db = require("./db");
 
-busDetails = {
-  100: {
-    busNo: 100,
-    regNo: "KL 6 x 123",
-    from: "Kollam",
-    to: "Kochi",
-    departureTime: "06:00AM",
-  },
-  101: {
-    busNo: 101,
-    regNo: "KL 2 x 123",
-    from: "Kollam",
-    to: "Kochi",
-    departureTime: "06:00AM",
-  },
-  102: {
-    busNo: 102,
-    regNo: "KL 7 x 123",
-    from: "Idukki",
-    to: "Kochi",
-    departureTime: "06:00AM",
-  },
-  103: {
-    busNo: 103,
-    regNo: "KL 8 x 123",
-    from: "Trissur",
-    to: "Kochi",
-    departureTime: "06:00AM",
-  },
-};
 addBus = (busNo, regNo, from, to, dTime) => {
   console.log("ds.addBus");
   return db.Bus.findOne({ busNo: busNo }).then((bus) => {
